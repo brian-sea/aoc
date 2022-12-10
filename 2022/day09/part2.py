@@ -33,8 +33,9 @@ for line in f:
                 if abs(moveHead[j]-move[j]) == 2:
                     move[j] = (moveHead[j]+move[j])//2
                     
-                    if moveHead[(j+1)%2]-move[(j+1)%2] != 0:
-                        move[(j+1)%2] += math.copysign(1, (moveHead[(j+1)%2]-move[(j+1)%2]) )
+                    loc = moveHead[(j+1)%2]-move[(j+1)%2]
+                    if loc != 0:
+                        move[(j+1)%2] += math.copysign(1, loc )
                         
             moveHead = tail[spot] = tuple(move)
             locations.add( tail[-1] )
