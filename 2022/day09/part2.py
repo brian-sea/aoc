@@ -6,7 +6,7 @@ tail = []
 for i in range(9):
     tail.append( (0,0) )
 
-locations = {(0,0):0}
+locations = set()
 
 # Map directions
 directions = {
@@ -37,7 +37,7 @@ for line in f:
                         move[(j+1)%2] += math.copysign(1, (moveHead[(j+1)%2]-move[(j+1)%2]) )
                         
             moveHead = tail[spot] = tuple(move)
-            locations[ tail[-1] ] = 0            
+            locations.add( tail[-1] )
             spot += 1
 
 print(len(locations))

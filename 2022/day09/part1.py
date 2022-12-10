@@ -2,7 +2,7 @@ f = open('inputfinal')
 
 head = [0,0]
 tail = (0,0)
-locations = {(0,0):0}
+locations = set()
 
 # Map directions
 directions = {
@@ -16,7 +16,7 @@ for line in f:
     dir, amt = line.split(' ')
     amt = int(amt)
 
-    dx, dy = map(int, directions[dir])
+    dx, dy = directions[dir]
 
     for i in range(amt):
         head = [ x + y for x,y in zip(head, [dx, dy])]
@@ -27,6 +27,6 @@ for line in f:
                 move[j] = (head[j]+move[j])//2
                 move[(j+1)%2] = head[(j+1)%2]
         tail = tuple(move)
-        locations[tail] = 0
+        locations.add(tail)
 
 print(len(locations))
