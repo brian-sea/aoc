@@ -20,10 +20,12 @@ for line in f:
         'x' : X
     })
 
-CRT = [' '] * 240
+CRTWidth = 40
+CRTHeight = 6
+CRT = [' '] * CRTWidth * CRTHeight
+
 spritePosition = 0
 cycle = 0
-CRTWidth = 40
 while len(checkpoints) > 0:
 
     # Time to change the placement of the sprite
@@ -37,6 +39,5 @@ while len(checkpoints) > 0:
 
     cycle += 1
 
-CRTHeight = 6
 for row in range(CRTHeight):
     print(''.join(CRT[row*CRTWidth: (row+1)*CRTWidth]))
