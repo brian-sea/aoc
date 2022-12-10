@@ -14,11 +14,10 @@ for line in f:
     cycle += execLength[parts[0]]
     if len(parts) > 1:
         X += int(parts[1])
-
-    checkpoints.append({
-        'cycle': cycle,
-        'x' : X
-    })
+        checkpoints.append({
+            'cycle': cycle,
+            'x' : X
+        })
 
 CRTWidth = 40
 CRTHeight = 6
@@ -39,5 +38,5 @@ while len(checkpoints) > 0:
 
     cycle += 1
 
-for row in range(CRTHeight):
-    print(''.join(CRT[row*CRTWidth: (row+1)*CRTWidth]))
+for row in range(0, len(CRT), CRTWidth):
+    print(''.join(CRT[row:row+CRTWidth]))
