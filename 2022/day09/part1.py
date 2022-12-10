@@ -6,17 +6,17 @@ locations = {(0,0):0}
 
 # Map directions
 directions = {
-    ord("L") : "-1,0",
-    ord("R") : "1,0",
-    ord("U") : "0,1",
-    ord("D") : "0,-1"
+    "L" : (-1,0),
+    "R" : (1,0),
+    "U" : (0,1),
+    "D" : (0,-1)
 }
 
 for line in f:
     dir, amt = line.split(' ')
     amt = int(amt)
 
-    dx, dy = map(int, dir.translate(directions).split(","))
+    dx, dy = map(int, directions[dir])
 
     for i in range(amt):
         head = [ x + y for x,y in zip(head, [dx, dy])]
