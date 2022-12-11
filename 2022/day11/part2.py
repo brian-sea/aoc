@@ -39,7 +39,7 @@ while rnd < 10000:
 
             val = int(monkey['worryMod'][1]) if monkey['worryMod'][1] != 'old' else lvl    
 
-            # Also a%LCM == a+val%LCM and a%LCM == a*val%LCM
+            # Also a%LCM == (a+val)%LCM and a%LCM == (a*val)%LCM
             lvl = lvl % LCM
 
             if monkey['worryMod'][0] == '+':
