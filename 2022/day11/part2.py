@@ -8,13 +8,13 @@ lines = list(map(str.strip, f.readlines()))
 spot = 1    
 while spot < len(lines):
     startingItems = list(map(int, re.findall("\d+", lines[spot])))
-    worryOp, worryMod = re.findall("old\s(\D\s\w+)", lines[spot+1])[0].split(' ')
+    worryOp, worryMod = re.findall("old\s(\D)\s(\w+)", lines[spot+1])[0]
     condTest = int(re.findall("\d+", lines[spot+2])[0])
     ifTrue = int(re.findall("\d+", lines[spot+3])[0])
     ifFalse = int(re.findall("\d+", lines[spot+4])[0])
 
     monkey = {
-        'items': [x for x in startingItems],
+        'items': startingItems,
         'worryMod': (worryOp, worryMod),
         'condTest': condTest,
         'true': ifTrue,
