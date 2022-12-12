@@ -1,15 +1,12 @@
 f = open('inputfinal')
 grid = list(map(str.strip, f.readlines()))
 
-pathSizes = {}
 startLocations = []
 elocation = None
 maxPathSize = len(grid)*len(grid[0]) + 1
 for ridx, row in enumerate(grid):
     for cidx, col in enumerate(row):
-        pathSizes[(ridx,cidx)] = maxPathSize
         if col == 'S':
-            location = (ridx, cidx)
             grid[ridx] = grid[ridx].replace('S', 'a')
         elif col == 'E':
             grid[ridx] = grid[ridx].replace('E', 'z')
@@ -18,17 +15,15 @@ for ridx, row in enumerate(grid):
         if grid[ridx][cidx] == 'a':
             startLocations.append((ridx,cidx))
 
+pathSizes = {}
 minPath = maxPathSize
 minLoc = None
 for location in startLocations:
 
-    maxPathSize = len(grid)*len(grid[0]) + 1
-    for ridx, row in enumerate(grid):
-        for cidx, col in enumerate(row):
-            pathSizes[(ridx,cidx)] = maxPathSize
+    pathSizes.clear()
     pathSizes[location] = 0
-
     VISITED = {location:0}
+    
     search = set()
     search.add(location)
     while location != None and location != elocation:
@@ -46,7 +41,9 @@ for location in startLocations:
                 
                 if look not in VISITED and stepdiff <= 1:
                     search.add(look)    
-                    if pathSizes[location]+1 < pathSizes[look]:
+                    
+                    pSize = pathSizes[look] if look in pathSizes else maxPathSize
+                    if pathSizes[location]+1 < pSize:
                         pathSizes[look] = pathSizes[location]+1
         
         minLocation = None

@@ -7,18 +7,18 @@ elocation = None
 maxPathSize = len(grid)*len(grid[0]) + 1
 for ridx, row in enumerate(grid):
     for cidx, col in enumerate(row):
-        pathSizes[(ridx,cidx)] = maxPathSize
         if col == 'S':
             location = (ridx, cidx)
             grid[ridx] = grid[ridx].replace('S', 'a')
-            pathSizes[(ridx,cidx)] = 0
         elif col == 'E':
             grid[ridx] = grid[ridx].replace('E', 'z')
             elocation = (ridx, cidx)
 
+pathSizes = { location: 0}
 VISITED = {location:0}
 search = set()
 search.add(location)
+
 while location != elocation:
     search.remove(location)
     looks = [
@@ -34,7 +34,9 @@ while location != elocation:
             
             if look not in VISITED and stepdiff <= 1:
                 search.add(look)    
-                if pathSizes[location]+1 < pathSizes[look]:
+                pSize = pathSizes[look] if look in pathSizes else maxPathSize
+
+                if pathSizes[location]+1 < pSize:
                     pathSizes[look] = pathSizes[location]+1
     
     minLocation = None
