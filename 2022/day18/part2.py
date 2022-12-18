@@ -10,7 +10,7 @@ def isOutside(p, bounds):
 def reachOutside(p, pockets, ash, bounds, OUT, IN):
     visited = set()
     if p in OUT:
-            return True, visited
+        return True, visited
     if p in IN:
         False, visited
 
