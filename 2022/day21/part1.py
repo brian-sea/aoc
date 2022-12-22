@@ -1,5 +1,3 @@
-from collections import deque
-import re
 f = open("inputfinal")
 
 monkeys = {}
