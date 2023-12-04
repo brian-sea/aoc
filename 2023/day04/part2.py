@@ -1,8 +1,10 @@
+import datetime
 import re
 f = open("finalinput")
 
 lines = [line.strip() for line in f.readlines()]
 
+#start = datetime.datetime.now()
 cardsWon = dict()
 s = 0
 for line in lines:
@@ -33,8 +35,12 @@ for line in lines:
         else:
             cardsWon[e] = cardsWon[cardID]
     s += cardsWon[cardID]
+#end = datetime.datetime.now()
 
 print(s)
+
+# Timing
+#print(end-start)
 
 
 
