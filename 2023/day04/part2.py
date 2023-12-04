@@ -21,14 +21,20 @@ for line in lines:
     for g in got:
         if( g in matches ):
             points += 1
-    cardsWon[cardID] = points
-    process.append(cardID)
 
-idx = 0
-while idx < len(process):
-    points = cardsWon[process[idx]]
-    for e in range(process[idx]+1, process[idx]+points+1):
-        process.append(e)
-    idx += 1
+    if cardID in cardsWon:
+        cardsWon[cardID] += 1
+    else:
+        cardsWon[cardID] = 1
 
-print(len(process))
+    for e in range(cardID+1, cardID + points + 1):    
+        if e in cardsWon:
+            cardsWon[e] += cardsWon[cardID]
+        else:
+            cardsWon[e] = cardsWon[cardID]
+
+
+print(sum(cardsWon.values()))
+
+
+
