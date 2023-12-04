@@ -3,8 +3,8 @@ f = open("finalinput")
 
 lines = [line.strip() for line in f.readlines()]
 
-process = []
 cardsWon = dict()
+s = 0
 for line in lines:
     parts = line.split(":")
     cardID = int(re.findall("\d+", parts[0])[0])
@@ -32,9 +32,9 @@ for line in lines:
             cardsWon[e] += cardsWon[cardID]
         else:
             cardsWon[e] = cardsWon[cardID]
+    s += cardsWon[cardID]
 
-
-print(sum(cardsWon.values()))
+print(s)
 
 
 
