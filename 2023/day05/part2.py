@@ -1,4 +1,4 @@
-# Brute Force... ewww; find a better way
+# Optimized algorithm without Brute Force (finally....)
 
 import re
 import datetime
