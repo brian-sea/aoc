@@ -37,8 +37,9 @@ for y in range(len(lines)):
 
 
 # (y,x) : (numSteps, cameFrom)
-visited = {
-}
+visited = { }
+
+# Add a fake start (removed later)
 visited["start"] = (-1,"start")
 start = (start, "start")
 
@@ -76,6 +77,8 @@ while len(queue) > 0:
                             queue.append(( going, loc ))
 del visited['start']
 
+
+# Sort by row then column
 cycle = list(visited.keys())
 cycle = sorted(cycle, key=lambda k: k[0]*len(lines[0])+k[1])
 
@@ -88,7 +91,7 @@ up = False
 pos = 0
 while pos < len(cycle):
 
-    # Final interval on the new row    
+    # Find interval on the new row    
     if( cycle[pos][0] != row ):
         row = cycle[pos][0]
         inside = False
@@ -106,6 +109,7 @@ while pos < len(cycle):
         interval[1] = cycle[-1][1]
     
     # Horizontal line test for inside/outside
+    # Moving Left to Right
     # Allow riding of pipes (need up/down direction)
     # 
     # Another Option: Reduce scale to 0.5 and flood fill
@@ -121,11 +125,11 @@ while pos < len(cycle):
             elif lines[row][x] == 'F':  # Going Up
                 up = True               
             elif lines[row][x] == '7':  # Going Down
-                if not up:
+                if not up:              # Was going down, so intersect
                     inside = not inside
                 up = False
             elif lines[row][x] == 'J':  # Going Down
-                if up:
+                if up:                  # Was going up, so intersect
                     inside = not inside
                 up = False  
     pos += 1
