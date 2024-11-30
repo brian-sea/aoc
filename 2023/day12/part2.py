@@ -13,9 +13,9 @@ for line in lines:
     [p,n] = line.split(' ')
     pattern = p
     nums = n
-    for x in range(4):
-        pattern += "?" + p
-        nums += ","+n
+    #for x in range(4):
+    #    pattern += "?" + p
+    #    nums += ","+n
 
     nums = [ int(x) for x in nums.split(',')]
 
